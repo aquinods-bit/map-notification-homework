@@ -18,8 +18,8 @@ export default function RootLayout() {
           router.push({
             pathname: "/map",
             params: {
-              lat: eventData.latitude,
-              lng: eventData.longitude,
+              lat: String(eventData.latitude),
+              lng: String(eventData.longitude),
             },
           });
         }
