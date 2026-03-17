@@ -29,6 +29,7 @@ export default function Index() {
   const [userLocation, setUserLocation] = useState<Coordinate | null>(null);
   const [hasBeenNotified, setHasBeenNotified] = useState(false);
 
+  
   const eventLat = 32.7840;
   const eventLng = -79.9360;
 
@@ -36,6 +37,8 @@ export default function Index() {
 
   useEffect(() => {
     (async () => {
+      await Notifications.requestPermissionsAsync();
+
       let {status} = await Location.requestForegroundPermissionsAsync();
 
       if (status != "granted"){
@@ -73,6 +76,8 @@ export default function Index() {
             { latitude: userLat, longitude: userLng },
             { latitude: eventLat, longitude: eventLng },
           );
+
+          
         
           if (distanceToEvent <= 100 && !hasBeenNotified) {
             setHasBeenNotified(true);
@@ -82,12 +87,14 @@ export default function Index() {
                 title: "Nearby Event!",
                 body: "You are within 100 meters.",
                 data: {
-                  eventLat: eventLat,
-                  eventLng: eventLng
+                  latitude: eventLat,
+                  longitude: eventLng
                 }
               },
               trigger: null
-            });            
+            });    
+            
+            
             
           }
         }

@@ -18,8 +18,8 @@ const events: Event[] = [
     id: 1, 
     name: "Walmart",
     description: "Shaq is doing a meet n greet.",
-    latitude: 32.7800,
-    longitude: -79.9362,
+    latitude: 32.93402,
+    longitude: -80.04120,
   },
   {
     id: 2, 
